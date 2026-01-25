@@ -1,59 +1,78 @@
-# LibraryForm
+# 📚 Open Shelf Platform (Angular Library Manager)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+A modern, community-driven library management system built with Angular 19. This application features an "Open Platform" architecture where anyone can browse, and any user can instantly become a publisher.
 
-## Development server
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-To start a local development server, run:
+## ✨ Key Features
 
-```bash
-ng serve
-```
+### 🌍 Open Community Platform
+- **Information First**: The home screen immediately displays the book catalog—no barriers to entry.
+- **Instant Publishing**: Unique "Publish Book" workflow allows any user to sign in and contribute to the library.
+- **Simplified Access**: No complex registration. Any username/password combination grants publishing rights.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 🛡️ Ownership & Permissions
+- **Creator Ownership**: Books are permanently linked to their creator.
+- **Smart Permissions**:
+  - You can **Edit** and **Delete** books you published.
+  - Books published by others appear as **Read Only**.
+- **Sample Data**: Includes a curated collection of classics (owned by System Admin) that serves as a permanent reference.
 
-## Code scaffolding
+### 🎨 Modern Experience
+- **Full-Screen Details**: Immersive book detail pages with metadata and descriptions.
+- **Dark Mode**: Fully supported dark theme for comfortable reading.
+- **Responsive Design**: Mobile-first architecture that works on any device.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🚀 Getting Started
 
-```bash
-ng generate component component-name
-```
+Follow these steps to set up the project locally:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 1. Prerequisites
+Ensure you have **Node.js** ensuring `npm` is installed.
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### 2. Installation
+Clone the repository and install dependencies:
 
 ```bash
-ng test
+# Clone the repository
+git clone https://github.com/rahilshah3105/library-manager.git
+
+# Navigate to project directory
+cd library-manager
+
+# Install dependencies
+npm install
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### 3. Running the Application
+Start the development server:
 
 ```bash
-ng e2e
+npm start
 ```
+*Alternatively, you can run `ng serve` if you have Angular CLI installed globally.*
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### 4. Open in Browser
+Navigate to `http://localhost:4200` to view the application.
 
-## Additional Resources
+## 📖 Usage Guide
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Goal | Action |
+|------|--------|
+| **Browse Books** | Simply scroll the home page. Use the search bar or genre filter to find specific titles. |
+| **View Details** | Click on any book card to open the **Full Screen Detail View**. Click "Back" to return. |
+| **Publish a Book** | Click **"Publish Book"** in the top right. Enter any username (e.g., "Alex") and password to login. |
+| **Manage Books** | After login, the **Add Book** form opens automatically. You can also edit/delete any books *you* created. |
+
+## 🛠️ Tech Stack
+
+- **Framework**: Angular 19
+- **Language**: TypeScript 5.x
+- **Styling**: Vanilla CSS3 (Variables & Responsive Layouts)
+- **Data Persistence**: LocalStorage (Persists your changes in the browser)
+
+## 📝 License
+
+This project is open source and available under the MIT License.
