@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { LoggerService } from './logger.service';
 
 export type UserRole = 'admin' | 'user';
 
@@ -14,7 +15,8 @@ export class AuthService {
     private readonly STORAGE_KEY = 'library_auth_user';
     private currentUser: AuthUser | null = null;
 
-    constructor() {
+    constructor(private logger: LoggerService) {
+        this.logger.info('AuthService initialized');
         this.loadUser();
     }
 
@@ -22,6 +24,9 @@ export class AuthService {
         const stored = localStorage.getItem(this.STORAGE_KEY);
         if (stored) {
             this.currentUser = JSON.parse(stored);
+            this.logger.debug('User loaded from storage', { username: this.currentUser?.username });
+        } else {
+            this.logger.debug('No user found in storage');
         }
     }
 
@@ -38,15 +43,19 @@ export class AuthService {
         if (username.trim() && password.trim()) {
             this.currentUser = { username, role: 'admin' };
             this.saveUser();
+            this.logger.info('User logged in successfully', { username });
             return true;
         }
 
+        this.logger.warn('Login failed: Invalid credentials');
         return false;
     }
 
     logout(): void {
+        const username = this.currentUser?.username;
         this.currentUser = null;
         this.saveUser();
+        this.logger.info('User logged out', { username });
     }
 
     getCurrentUser(): AuthUser | null {

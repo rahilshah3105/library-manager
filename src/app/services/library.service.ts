@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Book, BookFormData } from '../models/book.model';
+import { LoggerService } from './logger.service';
 
 @Injectable({
     providedIn: 'root'
@@ -8,7 +9,8 @@ export class LibraryService {
     private readonly STORAGE_KEY = 'library_books';
     private books: Book[] = [];
 
-    constructor() {
+    constructor(private logger: LoggerService) {
+        this.logger.info('LibraryService initialized');
         this.loadBooks();
     }
 
@@ -16,9 +18,11 @@ export class LibraryService {
         const stored = localStorage.getItem(this.STORAGE_KEY);
         if (stored) {
             this.books = JSON.parse(stored);
+            this.logger.debug('Books loaded from storage', { count: this.books.length });
         } else {
             this.books = this.getSampleData();
             this.saveBooks();
+            this.logger.info('Initialized with sample data', { count: this.books.length });
         }
     }
 
@@ -42,6 +46,7 @@ export class LibraryService {
         };
         this.books.unshift(newBook);
         this.saveBooks();
+        this.logger.info('Book added', { id: newBook.id, title: newBook.title });
         return newBook;
     }
 
@@ -50,18 +55,23 @@ export class LibraryService {
         if (index !== -1) {
             this.books[index] = { ...this.books[index], ...bookData };
             this.saveBooks();
+            this.logger.info('Book updated', { id, title: this.books[index].title });
             return this.books[index];
         }
+        this.logger.warn('Book update failed: Book not found', { id });
         return null;
     }
 
     deleteBook(id: string): boolean {
         const index = this.books.findIndex(book => book.id === id);
         if (index !== -1) {
+            const title = this.books[index].title;
             this.books.splice(index, 1);
             this.saveBooks();
+            this.logger.info('Book deleted', { id, title });
             return true;
         }
+        this.logger.warn('Book deletion failed: Book not found', { id });
         return false;
     }
 
